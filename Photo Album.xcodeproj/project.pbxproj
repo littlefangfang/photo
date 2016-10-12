@@ -15,6 +15,11 @@
 		701537321DAB433200AE7A30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 701537301DAB433200AE7A30 /* LaunchScreen.storyboard */; };
 		7015373D1DAB433200AE7A30 /* Photo_AlbumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7015373C1DAB433200AE7A30 /* Photo_AlbumTests.m */; };
 		701537481DAB433200AE7A30 /* Photo_AlbumUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 701537471DAB433200AE7A30 /* Photo_AlbumUITests.m */; };
+		701537571DAB6C8600AE7A30 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701537561DAB6C8600AE7A30 /* PhotoListViewController.m */; };
+		7015375A1DAB6D2300AE7A30 /* SmallPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 701537591DAB6D2300AE7A30 /* SmallPhotoCell.m */; };
+		7015375D1DAB9E6700AE7A30 /* FYImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7015375C1DAB9E6700AE7A30 /* FYImagePickerViewController.m */; };
+		70F8689E1DACEAEF00C949B0 /* PickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F8689D1DACEAEF00C949B0 /* PickerCell.m */; };
+		70F868A01DAD036C00C949B0 /* 对勾.png in Resources */ = {isa = PBXBuildFile; fileRef = 70F8689F1DAD036C00C949B0 /* 对勾.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,15 @@
 		701537431DAB433200AE7A30 /* Photo AlbumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Photo AlbumUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		701537471DAB433200AE7A30 /* Photo_AlbumUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photo_AlbumUITests.m; sourceTree = "<group>"; };
 		701537491DAB433200AE7A30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		701537551DAB6C8600AE7A30 /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
+		701537561DAB6C8600AE7A30 /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
+		701537581DAB6D2300AE7A30 /* SmallPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallPhotoCell.h; sourceTree = "<group>"; };
+		701537591DAB6D2300AE7A30 /* SmallPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallPhotoCell.m; sourceTree = "<group>"; };
+		7015375B1DAB9E6700AE7A30 /* FYImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYImagePickerViewController.h; sourceTree = "<group>"; };
+		7015375C1DAB9E6700AE7A30 /* FYImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYImagePickerViewController.m; sourceTree = "<group>"; };
+		70F8689C1DACEAEF00C949B0 /* PickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerCell.h; sourceTree = "<group>"; };
+		70F8689D1DACEAEF00C949B0 /* PickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerCell.m; sourceTree = "<group>"; };
+		70F8689F1DAD036C00C949B0 /* 对勾.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "对勾.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +119,19 @@
 				701537261DAB433200AE7A30 /* AppDelegate.m */,
 				701537281DAB433200AE7A30 /* ViewController.h */,
 				701537291DAB433200AE7A30 /* ViewController.m */,
+				701537551DAB6C8600AE7A30 /* PhotoListViewController.h */,
+				701537561DAB6C8600AE7A30 /* PhotoListViewController.m */,
+				701537581DAB6D2300AE7A30 /* SmallPhotoCell.h */,
+				701537591DAB6D2300AE7A30 /* SmallPhotoCell.m */,
+				7015375B1DAB9E6700AE7A30 /* FYImagePickerViewController.h */,
+				7015375C1DAB9E6700AE7A30 /* FYImagePickerViewController.m */,
+				70F8689C1DACEAEF00C949B0 /* PickerCell.h */,
+				70F8689D1DACEAEF00C949B0 /* PickerCell.m */,
 				7015372B1DAB433200AE7A30 /* Main.storyboard */,
 				7015372E1DAB433200AE7A30 /* Assets.xcassets */,
 				701537301DAB433200AE7A30 /* LaunchScreen.storyboard */,
 				701537331DAB433200AE7A30 /* Info.plist */,
+				70F8689F1DAD036C00C949B0 /* 对勾.png */,
 				701537221DAB433200AE7A30 /* Supporting Files */,
 			);
 			path = "Photo Album";
@@ -246,6 +269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70F868A01DAD036C00C949B0 /* 对勾.png in Resources */,
 				701537321DAB433200AE7A30 /* LaunchScreen.storyboard in Resources */,
 				7015372F1DAB433200AE7A30 /* Assets.xcassets in Resources */,
 				7015372D1DAB433200AE7A30 /* Main.storyboard in Resources */,
@@ -274,8 +298,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7015372A1DAB433200AE7A30 /* ViewController.m in Sources */,
+				701537571DAB6C8600AE7A30 /* PhotoListViewController.m in Sources */,
+				7015375A1DAB6D2300AE7A30 /* SmallPhotoCell.m in Sources */,
 				701537271DAB433200AE7A30 /* AppDelegate.m in Sources */,
 				701537241DAB433200AE7A30 /* main.m in Sources */,
+				7015375D1DAB9E6700AE7A30 /* FYImagePickerViewController.m in Sources */,
+				70F8689E1DACEAEF00C949B0 /* PickerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +535,7 @@
 				7015374E1DAB433200AE7A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7015374F1DAB433200AE7A30 /* Build configuration list for PBXNativeTarget "Photo AlbumTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +544,7 @@
 				701537511DAB433200AE7A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		701537521DAB433200AE7A30 /* Build configuration list for PBXNativeTarget "Photo AlbumUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +553,7 @@
 				701537541DAB433200AE7A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
