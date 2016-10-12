@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7011A7051DAE3C0F00735A39 /* PhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7011A7041DAE3C0F00735A39 /* PhotoDetailViewController.m */; };
+		7011A7081DAE3C6500735A39 /* BigPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7011A7071DAE3C6500735A39 /* BigPhotoCell.m */; };
+		7011A70B1DAE4CE200735A39 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7011A70A1DAE4CE200735A39 /* SettingViewController.m */; };
 		701537241DAB433200AE7A30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 701537231DAB433200AE7A30 /* main.m */; };
 		701537271DAB433200AE7A30 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 701537261DAB433200AE7A30 /* AppDelegate.m */; };
 		7015372A1DAB433200AE7A30 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701537291DAB433200AE7A30 /* ViewController.m */; };
@@ -40,6 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7011A7031DAE3C0F00735A39 /* PhotoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDetailViewController.h; sourceTree = "<group>"; };
+		7011A7041DAE3C0F00735A39 /* PhotoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailViewController.m; sourceTree = "<group>"; };
+		7011A7061DAE3C6500735A39 /* BigPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigPhotoCell.h; sourceTree = "<group>"; };
+		7011A7071DAE3C6500735A39 /* BigPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigPhotoCell.m; sourceTree = "<group>"; };
+		7011A7091DAE4CE200735A39 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		7011A70A1DAE4CE200735A39 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		7015371F1DAB433200AE7A30 /* Photo Album.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Album.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		701537231DAB433200AE7A30 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		701537251DAB433200AE7A30 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -127,6 +136,12 @@
 				7015375C1DAB9E6700AE7A30 /* FYImagePickerViewController.m */,
 				70F8689C1DACEAEF00C949B0 /* PickerCell.h */,
 				70F8689D1DACEAEF00C949B0 /* PickerCell.m */,
+				7011A7031DAE3C0F00735A39 /* PhotoDetailViewController.h */,
+				7011A7041DAE3C0F00735A39 /* PhotoDetailViewController.m */,
+				7011A7061DAE3C6500735A39 /* BigPhotoCell.h */,
+				7011A7071DAE3C6500735A39 /* BigPhotoCell.m */,
+				7011A7091DAE4CE200735A39 /* SettingViewController.h */,
+				7011A70A1DAE4CE200735A39 /* SettingViewController.m */,
 				7015372B1DAB433200AE7A30 /* Main.storyboard */,
 				7015372E1DAB433200AE7A30 /* Assets.xcassets */,
 				701537301DAB433200AE7A30 /* LaunchScreen.storyboard */,
@@ -299,11 +314,14 @@
 			files = (
 				7015372A1DAB433200AE7A30 /* ViewController.m in Sources */,
 				701537571DAB6C8600AE7A30 /* PhotoListViewController.m in Sources */,
+				7011A7051DAE3C0F00735A39 /* PhotoDetailViewController.m in Sources */,
 				7015375A1DAB6D2300AE7A30 /* SmallPhotoCell.m in Sources */,
+				7011A7081DAE3C6500735A39 /* BigPhotoCell.m in Sources */,
 				701537271DAB433200AE7A30 /* AppDelegate.m in Sources */,
 				701537241DAB433200AE7A30 /* main.m in Sources */,
 				7015375D1DAB9E6700AE7A30 /* FYImagePickerViewController.m in Sources */,
 				70F8689E1DACEAEF00C949B0 /* PickerCell.m in Sources */,
+				7011A70B1DAE4CE200735A39 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

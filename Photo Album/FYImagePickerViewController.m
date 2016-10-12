@@ -9,12 +9,7 @@
 #import "FYImagePickerViewController.h"
 #import "PickerCell.h"
 
-@protocol FYImagePickerDelegate <NSObject>
 
-@optional
-- (void)didFinishSelected:(NSMutableArray *)selectedPhoto;
-
-@end
 
 @interface FYImagePickerViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -41,9 +36,9 @@
         [fullArr addObject:dic];
     }
     
-    self.navigationController.navigationBarHidden = NO;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:layout];
     _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.delegate = self;
@@ -54,11 +49,20 @@
     
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 30, [UIScreen mainScreen].bounds.size.width, 30)];
     bottomView.backgroundColor = [UIColor whiteColor];
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setFrame:bottomView.bounds];
+    [btn setFrame:CGRectMake(bottomView.frame.size.width - 50, 0, 50, 30)];
     [btn setTitle:@"确定" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(confirmSelect:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancelBtn setFrame:CGRectMake(0, 0, 50, 30)];
+    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [cancelBtn addTarget:self action:@selector(tapCancel:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [bottomView addSubview:cancelBtn];
     [bottomView addSubview:btn];
     [self.view addSubview:bottomView];
     
@@ -70,9 +74,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Action
 - (void)confirmSelect:(id)sender {
-    
+    if ([_pickerDelegate respondsToSelector:@selector(didFinishSelected:)]) {
+        [_pickerDelegate didFinishSelected:selectedArr];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)tapCancel:(id)sender {
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - UICollectionView data source
 
@@ -81,7 +95,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (!_albumArr) {
+    if (!fullArr) {
         return 0;
     }
     return fullArr.count;
