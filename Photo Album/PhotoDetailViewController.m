@@ -21,6 +21,7 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
+//    [_collectionView setContentOffset:_offset];
     self.navigationController.hidesBarsOnTap = YES;
 }
 
@@ -28,6 +29,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.hidesBarsOnTap = NO;
+    [_collectionView setContentOffset:_offset animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {

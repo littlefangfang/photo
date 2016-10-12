@@ -12,4 +12,5 @@
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray *photoArr;
+@property (assign, nonatomic) CGPoint offset;
 @end

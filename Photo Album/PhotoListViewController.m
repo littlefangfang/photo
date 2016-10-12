@@ -124,7 +124,8 @@
     // Pass the selected object to the new view controller.
     PhotoDetailViewController *vc = (PhotoDetailViewController *)[segue destinationViewController];
     vc.photoArr = _photoArr;
-    [vc.collectionView setContentOffset:CGPointMake(idx * [UIScreen mainScreen].bounds.size.width, 0) animated:NO];
+    vc.offset = CGPointMake(idx * [UIScreen mainScreen].bounds.size.width, 0);
+    NSLog(@"%d",idx);
 }
 
 
