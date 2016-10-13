@@ -15,9 +15,8 @@
 
 @implementation BigPhotoCell
 
-- (void)viewWillLayoutSubviews
-{
-    [self setZoomScale];
+- (void)layoutSubviews {
+    [super layoutSubviews];
 }
 
 #pragma mark - Helper

@@ -13,24 +13,42 @@
 
 @end
 
-@implementation PhotoDetailViewController
+@implementation PhotoDetailViewController{
+    BOOL shoudMove;
+    int idx;
+    CGFloat screenW;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+    screenW = [UIScreen mainScreen].bounds.size.width;
+    idx = _offset.x / [UIScreen mainScreen].bounds.size.width;
     
-//    [_collectionView setContentOffset:_offset];
     self.navigationController.hidesBarsOnTap = YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (!shoudMove) {
+        [_collectionView setContentOffset:_offset animated:NO];
+        shoudMove = YES;
+    }else if(screenW != [UIScreen mainScreen].bounds.size.width){
+//        [_collectionView setFrame:self.view.bounds];
+        screenW = [UIScreen mainScreen].bounds.size.width;
+        [_collectionView setContentOffset:CGPointMake(idx * screenW, 0) animated:YES];
+        [_collectionView reloadData];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.hidesBarsOnTap = NO;
-    [_collectionView setContentOffset:_offset animated:NO];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -62,6 +80,19 @@
     return _collectionView.bounds.size;
 }
 
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSArray *idxArr = [_collectionView indexPathsForVisibleItems];
+        NSIndexPath *idxP = [idxArr firstObject];
+        idx = (int)idxP.row;
+    });
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self.collectionView performBatchUpdates:nil completion:nil];
+}
 
 /*
 #pragma mark - Navigation

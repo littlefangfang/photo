@@ -64,6 +64,12 @@
     
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [_originTF endEditing:YES];
+    [_theNewTF endEditing:YES];
+    [_repeatTF endEditing:YES];
+}
+
 /*
 #pragma mark - Navigation
 

@@ -102,7 +102,6 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="imgView" destination="584-Lp-cKm" id="QFD-Of-v8I"/>
-                                            <segue destination="C4c-oq-xbw" kind="show" id="cAI-NQ-GXT"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -125,6 +124,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="4N3-mz-0LA" id="JSQ-A2-bde"/>
+                        <segue destination="C4c-oq-xbw" kind="show" identifier="show_detail" id="gRQ-Qy-xND"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TLo-bV-xCL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,7 +153,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="big_cell" id="ykT-zD-TyC" customClass="BigPhotoCell">
-                                        <rect key="frame" x="0.0" y="93" width="303" height="418"/>
+                                        <rect key="frame" x="0.0" y="92.5" width="303" height="418"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="303" height="418"/>

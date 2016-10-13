@@ -24,7 +24,6 @@
 
 @implementation PhotoListViewController{
     NSString *dirPath;
-    int idx;
 }
 
 - (void)viewDidLoad {
@@ -95,7 +94,7 @@
 
 #pragma mark - UICollectionView delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    idx = (int)indexPath.row;
+    [self performSegueWithIdentifier:@"show_detail" sender:[NSNumber numberWithInt:(int)indexPath.row]];
 }
 
 #pragma mark - FYPickerDelegate
@@ -124,8 +123,7 @@
     // Pass the selected object to the new view controller.
     PhotoDetailViewController *vc = (PhotoDetailViewController *)[segue destinationViewController];
     vc.photoArr = _photoArr;
-    vc.offset = CGPointMake(idx * [UIScreen mainScreen].bounds.size.width, 0);
-    NSLog(@"%d",idx);
+    vc.offset = CGPointMake([(NSNumber *)sender intValue] * [UIScreen mainScreen].bounds.size.width, 0);
 }
 
 
