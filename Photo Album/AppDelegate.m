@@ -113,5 +113,10 @@
     return nil;
 }
 
+- (void)application:(UIApplication *)application didChangeStatusBarFrame:(CGRect)oldStatusBarFrame {
+    [v setFrame:[UIScreen mainScreen].bounds];
+}
+
+
 
 @end
