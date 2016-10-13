@@ -48,6 +48,10 @@
     if (firstEnter) {
         firstEnter = false;
     }else{
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"alwaysNeedPassword"] boolValue]) {
+            return;
+        }
+        
         if ([[self topViewController] isKindOfClass:[ViewController class]]) {
             return;
         }

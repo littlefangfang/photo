@@ -116,6 +116,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iVV-gb-uNk">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="u7G-l1-FIu"/>
                         <barButtonItem key="rightBarButtonItem" title="导入" id="kFg-bf-LXz">
                             <connections>
                                 <action selector="getPhotoFromAlbum:" destination="Qpa-wW-O8B" id="vIO-IS-Yhk"/>
@@ -197,6 +198,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xEy-Tk-QjT">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="93B-Wc-Bbx"/>
                         <barButtonItem key="rightBarButtonItem" title="设置" id="h5r-br-UmA">
                             <connections>
                                 <segue destination="xkN-Xu-8Pm" kind="show" id="8Y5-lC-7mR"/>
@@ -260,33 +262,50 @@
                                     <action selector="tapConfirm:" destination="xkN-Xu-8Pm" eventType="touchUpInside" id="g2y-Z3-dQn"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每次从后台进入都需要密码:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBH-6i-jeR">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RsI-sq-mxn">
+                                <connections>
+                                    <action selector="tapAlwaysNeedPassword:" destination="xkN-Xu-8Pm" eventType="valueChanged" id="9Vz-43-W6k"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gmy-tD-cUC" firstAttribute="leading" secondItem="Lbw-uT-yUw" secondAttribute="leading" constant="16" id="2UT-zE-n6s"/>
+                            <constraint firstItem="EBH-6i-jeR" firstAttribute="leading" secondItem="Lbw-uT-yUw" secondAttribute="leading" constant="16" id="3SG-Uu-IGY"/>
+                            <constraint firstItem="RsI-sq-mxn" firstAttribute="centerY" secondItem="EBH-6i-jeR" secondAttribute="centerY" id="59W-Hy-9bm"/>
                             <constraint firstItem="g3X-aU-Xvu" firstAttribute="centerY" secondItem="gmy-tD-cUC" secondAttribute="centerY" id="6gZ-gT-T4a"/>
                             <constraint firstItem="7qs-aS-hcc" firstAttribute="top" secondItem="gmy-tD-cUC" secondAttribute="bottom" constant="34" id="6ox-BY-Pa7"/>
                             <constraint firstItem="gmy-tD-cUC" firstAttribute="top" secondItem="Lnf-8T-hW3" secondAttribute="bottom" constant="54" id="Eth-w8-BbO"/>
                             <constraint firstItem="n5a-TK-s8a" firstAttribute="leading" secondItem="Lbw-uT-yUw" secondAttribute="leading" constant="16" id="GNV-zC-euR"/>
                             <constraint firstItem="YOj-Ug-MtE" firstAttribute="leading" secondItem="7qs-aS-hcc" secondAttribute="trailing" constant="36" id="Izt-4a-RsV"/>
-                            <constraint firstItem="Hb9-eA-dpD" firstAttribute="top" secondItem="DMH-5E-R5W" secondAttribute="bottom" constant="50" id="OVO-jQ-CFd"/>
+                            <constraint firstItem="Hb9-eA-dpD" firstAttribute="top" secondItem="DMH-5E-R5W" secondAttribute="bottom" constant="100" id="OVO-jQ-CFd"/>
                             <constraint firstItem="7qs-aS-hcc" firstAttribute="leading" secondItem="Lbw-uT-yUw" secondAttribute="leading" constant="16" id="ama-Sa-b7k"/>
                             <constraint firstItem="YOj-Ug-MtE" firstAttribute="centerY" secondItem="7qs-aS-hcc" secondAttribute="centerY" id="azs-n3-Xui"/>
+                            <constraint firstItem="RsI-sq-mxn" firstAttribute="leading" secondItem="EBH-6i-jeR" secondAttribute="trailing" constant="8" id="cCj-cT-Jie"/>
                             <constraint firstAttribute="trailing" secondItem="DMH-5E-R5W" secondAttribute="trailing" constant="16" id="csh-js-iXN"/>
                             <constraint firstItem="DMH-5E-R5W" firstAttribute="leading" secondItem="n5a-TK-s8a" secondAttribute="trailing" constant="1" id="j4P-xb-Uzc"/>
                             <constraint firstItem="g3X-aU-Xvu" firstAttribute="leading" secondItem="gmy-tD-cUC" secondAttribute="trailing" constant="36" id="kEv-LJ-wQj"/>
                             <constraint firstItem="Hb9-eA-dpD" firstAttribute="centerX" secondItem="Lbw-uT-yUw" secondAttribute="centerX" id="meF-mf-y5F"/>
                             <constraint firstItem="n5a-TK-s8a" firstAttribute="top" secondItem="7qs-aS-hcc" secondAttribute="bottom" constant="36" id="pYO-Y1-cIx"/>
                             <constraint firstAttribute="trailing" secondItem="YOj-Ug-MtE" secondAttribute="trailing" constant="16" id="pgK-43-MOe"/>
+                            <constraint firstItem="EBH-6i-jeR" firstAttribute="top" secondItem="DMH-5E-R5W" secondAttribute="bottom" constant="33.5" id="rhj-wW-BxD"/>
                             <constraint firstAttribute="trailing" secondItem="g3X-aU-Xvu" secondAttribute="trailing" constant="16" id="wUf-81-cMA"/>
                             <constraint firstItem="DMH-5E-R5W" firstAttribute="centerY" secondItem="n5a-TK-s8a" secondAttribute="centerY" id="xah-tv-yyy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="设置密码" id="uIM-w6-KHn"/>
+                    <navigationItem key="navigationItem" title="设置密码" id="uIM-w6-KHn">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="LI5-2M-ryZ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="originPWLabel" destination="gmy-tD-cUC" id="hoy-gP-Yvh"/>
                         <outlet property="originTF" destination="g3X-aU-Xvu" id="if3-eM-2ur"/>
                         <outlet property="repeatTF" destination="DMH-5E-R5W" id="8c0-Gp-8yu"/>
+                        <outlet property="swich" destination="RsI-sq-mxn" id="0NX-2k-P6Q"/>
                         <outlet property="theNewTF" destination="YOj-Ug-MtE" id="KqL-ak-0Im"/>
                     </connections>
                 </viewController>

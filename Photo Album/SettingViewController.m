@@ -18,6 +18,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *originPWLabel;
 
+@property (strong, nonatomic) IBOutlet UISwitch *swich;
+
+
 @end
 
 @implementation SettingViewController
@@ -26,6 +29,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSString *originPW = [[NSUserDefaults standardUserDefaults] objectForKey:@"passwords"];
+    [_swich setOn:[[[NSUserDefaults standardUserDefaults] objectForKey:@"alwaysNeedPassword"] boolValue]];
+    
     if (originPW == nil) {
         _originTF.hidden = YES;
         _originPWLabel.hidden = YES;
@@ -62,6 +67,9 @@
         return;
     }
     
+}
+- (IBAction)tapAlwaysNeedPassword:(UISwitch *)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"alwaysNeedPassword"];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
