@@ -17,6 +17,9 @@
     BOOL shoudMove;
     int idx;
     CGFloat screenW;
+    CGFloat screenH;
+    
+    CGPoint contentOffsetAfterRotation;
 }
 
 - (void)viewDidLoad {
@@ -37,9 +40,7 @@
         shoudMove = YES;
     }else if(screenW != [UIScreen mainScreen].bounds.size.width){
 //        [_collectionView setFrame:self.view.bounds];
-        screenW = [UIScreen mainScreen].bounds.size.width;
-        [_collectionView setContentOffset:CGPointMake(idx * screenW, 0) animated:YES];
-        [_collectionView reloadData];
+        
     }
 }
 
@@ -77,7 +78,7 @@
 
 #pragma mark - UICollectionView flow layout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return _collectionView.bounds.size;
+    return self.view.bounds.size;
 }
 
 
@@ -89,9 +90,38 @@
     });
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+//    screenH = [UIScreen mainScreen].bounds.size.height;
+//    
+//    [_collectionView setContentOffset:CGPointMake(idx * screenH, 0) animated:YES];
+    
+    NSIndexPath *indexPath = [[self.collectionView indexPathsForVisibleItems] firstObject];
+    BigPhotoCell *cell = (id)[self.collectionView cellForItemAtIndexPath:indexPath];
+    
+    // Creates a temporary imageView that will occupy the full screen and rotate.
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[[cell imgView] image]];
+    [imageView setFrame:[self.view bounds]];
+    [imageView setTag:999];
+    [imageView setBackgroundColor:[UIColor whiteColor]];
+    [imageView setContentMode:[[cell imgView] contentMode]];
+    [imageView setAutoresizingMask:0xff];
+    [self.view insertSubview:imageView aboveSubview:self.collectionView];
+    
+    // Invalidate layout and calculate (next) contentOffset.
+    contentOffsetAfterRotation = CGPointMake(indexPath.item * [self.view bounds].size.height, 0);
+    [[self.collectionView collectionViewLayout] invalidateLayout];
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self.collectionView performBatchUpdates:nil completion:nil];
+
+//    screenW = [UIScreen mainScreen].bounds.size.width;
+//    [_collectionView setContentOffset:CGPointMake(idx * screenW, 0) animated:NO];
+//    [_collectionView reloadData];
+    [self.collectionView setContentOffset:contentOffsetAfterRotation];
+    [[self.view viewWithTag:999] removeFromSuperview];
 }
 
 /*
