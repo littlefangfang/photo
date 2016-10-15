@@ -14,10 +14,8 @@
 @end
 
 @implementation PhotoDetailViewController{
-    BOOL shoudMove;
+    BOOL shoudNotMove;
     int idx;
-    CGFloat screenW;
-    CGFloat screenH;
     
     CGPoint contentOffsetAfterRotation;
 }
@@ -30,7 +28,7 @@
     self.navigationController.delegate = self;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    screenW = [UIScreen mainScreen].bounds.size.width;
+
     idx = _offset.x / [UIScreen mainScreen].bounds.size.width;
     
     self.navigationController.hidesBarsOnTap = YES;
@@ -39,12 +37,9 @@
 
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    if (!shoudMove) {
+    if (!shoudNotMove) {
         [_collectionView setContentOffset:_offset animated:NO];
-        shoudMove = YES;
-    }else if(screenW != [UIScreen mainScreen].bounds.size.width){
-        //        [_collectionView setFrame:self.view.bounds];
-        
+        shoudNotMove = YES;
     }
 }
 
@@ -94,15 +89,11 @@
     });
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    
-    //    screenH = [UIScreen mainScreen].bounds.size.height;
-    //
-    //    [_collectionView setContentOffset:CGPointMake(idx * screenH, 0) animated:YES];
-    
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
     BigPhotoCell *cell = (id)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
     
-    // Creates a temporary imageView that will occupy the full screen and rotate.
+    // 添加一个临时的UIImageView
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[[cell imgView] image]];
     [imageView setFrame:[self.view bounds]];
     [imageView setTag:999];
@@ -111,27 +102,24 @@
     [imageView setAutoresizingMask:0xff];
     [self.view insertSubview:imageView aboveSubview:self.collectionView];
     
-    // Invalidate layout and calculate (next) contentOffset.
+    // set offset.
     contentOffsetAfterRotation = CGPointMake(idx * [self.view bounds].size.height, 0);
     [[self.collectionView collectionViewLayout] invalidateLayout];
-}
-
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-//    NSLog(@"size:---%@",NSStringFromCGSize(size));
-//}
-
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self.collectionView performBatchUpdates:nil completion:nil];
     
-    //    screenW = [UIScreen mainScreen].bounds.size.width;
-    //    [_collectionView setContentOffset:CGPointMake(idx * screenW, 0) animated:NO];
-    //    [_collectionView reloadData];
-    [self.collectionView setContentOffset:contentOffsetAfterRotation];
-    [[self.view viewWithTag:999] removeFromSuperview];
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+//        [self.collectionView performBatchUpdates:nil completion:nil];
+        
+        [self.collectionView setContentOffset:contentOffsetAfterRotation];
+        
+        // 移除临时创建的imageView
+        [[self.view viewWithTag:999] removeFromSuperview];
+    }];
 }
 
+#pragma mark - UINavigationController delegate
+// 设置允许的设备方向
 - (UIInterfaceOrientationMask)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController {
     return UIInterfaceOrientationMaskAll;
 }
