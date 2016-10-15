@@ -9,7 +9,7 @@
 #import "PhotoDetailViewController.h"
 #import "BigPhotoCell.h"
 
-@interface PhotoDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface PhotoDetailViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate>
 
 @end
 
@@ -25,12 +25,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.navigationController.delegate = self;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     screenW = [UIScreen mainScreen].bounds.size.width;
     idx = _offset.x / [UIScreen mainScreen].bounds.size.width;
     
     self.navigationController.hidesBarsOnTap = YES;
+    
 }
 
 -(void)viewDidLayoutSubviews {
@@ -39,7 +43,7 @@
         [_collectionView setContentOffset:_offset animated:NO];
         shoudMove = YES;
     }else if(screenW != [UIScreen mainScreen].bounds.size.width){
-//        [_collectionView setFrame:self.view.bounds];
+        //        [_collectionView setFrame:self.view.bounds];
         
     }
 }
@@ -92,12 +96,11 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     
-//    screenH = [UIScreen mainScreen].bounds.size.height;
-//    
-//    [_collectionView setContentOffset:CGPointMake(idx * screenH, 0) animated:YES];
+    //    screenH = [UIScreen mainScreen].bounds.size.height;
+    //
+    //    [_collectionView setContentOffset:CGPointMake(idx * screenH, 0) animated:YES];
     
-    NSIndexPath *indexPath = [[self.collectionView indexPathsForVisibleItems] firstObject];
-    BigPhotoCell *cell = (id)[self.collectionView cellForItemAtIndexPath:indexPath];
+    BigPhotoCell *cell = (id)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
     
     // Creates a temporary imageView that will occupy the full screen and rotate.
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[[cell imgView] image]];
@@ -109,29 +112,38 @@
     [self.view insertSubview:imageView aboveSubview:self.collectionView];
     
     // Invalidate layout and calculate (next) contentOffset.
-    contentOffsetAfterRotation = CGPointMake(indexPath.item * [self.view bounds].size.height, 0);
+    contentOffsetAfterRotation = CGPointMake(idx * [self.view bounds].size.height, 0);
     [[self.collectionView collectionViewLayout] invalidateLayout];
 }
+
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+//    NSLog(@"size:---%@",NSStringFromCGSize(size));
+//}
+
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self.collectionView performBatchUpdates:nil completion:nil];
-
-//    screenW = [UIScreen mainScreen].bounds.size.width;
-//    [_collectionView setContentOffset:CGPointMake(idx * screenW, 0) animated:NO];
-//    [_collectionView reloadData];
+    
+    //    screenW = [UIScreen mainScreen].bounds.size.width;
+    //    [_collectionView setContentOffset:CGPointMake(idx * screenW, 0) animated:NO];
+    //    [_collectionView reloadData];
     [self.collectionView setContentOffset:contentOffsetAfterRotation];
     [[self.view viewWithTag:999] removeFromSuperview];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UIInterfaceOrientationMask)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController {
+    return UIInterfaceOrientationMaskAll;
 }
-*/
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

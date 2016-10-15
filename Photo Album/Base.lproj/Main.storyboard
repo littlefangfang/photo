@@ -192,9 +192,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="X2u-UJ-HuS" secondAttribute="trailing" id="MRQ-z5-eW4"/>
-                            <constraint firstItem="X2u-UJ-HuS" firstAttribute="top" secondItem="g0G-qq-2yp" secondAttribute="bottom" id="OKb-U1-9MO"/>
                             <constraint firstItem="JVh-LR-Yp9" firstAttribute="top" secondItem="X2u-UJ-HuS" secondAttribute="bottom" id="aOU-rn-4CV"/>
                             <constraint firstItem="X2u-UJ-HuS" firstAttribute="leading" secondItem="PYk-QQ-CeU" secondAttribute="leading" id="f9A-sn-Mz0"/>
+                            <constraint firstItem="X2u-UJ-HuS" firstAttribute="top" secondItem="PYk-QQ-CeU" secondAttribute="top" id="q6l-KJ-k2H"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xEy-Tk-QjT">
