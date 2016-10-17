@@ -122,7 +122,8 @@
     }
     [_photoArr removeAllObjects];
     [self getLocalPhoto];
-    [_collectionView reloadData];
+//    [_collectionView reloadData];
+    [_collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
     
     canDelete = NO;
     _rightItem.title = @"删除";
