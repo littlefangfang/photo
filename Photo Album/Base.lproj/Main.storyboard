@@ -92,6 +92,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="584-Lp-cKm"/>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.png" translatesAutoresizingMaskIntoConstraints="NO" id="wOk-JW-EGd">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="F8U-XB-y5p"/>
+                                                        <constraint firstAttribute="height" constant="40" id="d8k-b1-dtP"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -99,13 +105,28 @@
                                             <constraint firstItem="584-Lp-cKm" firstAttribute="top" secondItem="CxQ-ai-c7i" secondAttribute="top" id="3lb-1p-HiP"/>
                                             <constraint firstItem="584-Lp-cKm" firstAttribute="leading" secondItem="CxQ-ai-c7i" secondAttribute="leading" id="5rD-MN-1Ay"/>
                                             <constraint firstAttribute="bottom" secondItem="584-Lp-cKm" secondAttribute="bottom" id="8Pa-6R-ci9"/>
+                                            <constraint firstAttribute="bottom" secondItem="wOk-JW-EGd" secondAttribute="bottom" id="8wR-B7-OEg"/>
+                                            <constraint firstAttribute="trailing" secondItem="wOk-JW-EGd" secondAttribute="trailing" id="T4S-Uv-2gP"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imgView" destination="584-Lp-cKm" id="QFD-Of-v8I"/>
+                                            <outlet property="markImgView" destination="wOk-JW-EGd" id="gov-Vw-Yck"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ghx-LD-c7N">
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="JeR-D2-ceR"/>
+                                    <barButtonItem systemItem="trash" id="Nyi-xj-SRW">
+                                        <connections>
+                                            <action selector="confirmDelete:" destination="Qpa-wW-O8B" id="NyL-Y6-jS9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -117,14 +138,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="iVV-gb-uNk">
                         <barButtonItem key="backBarButtonItem" title="返回" id="u7G-l1-FIu"/>
-                        <barButtonItem key="rightBarButtonItem" title="导入" id="kFg-bf-LXz">
+                        <barButtonItem key="leftBarButtonItem" title="导入" id="kFg-bf-LXz">
                             <connections>
                                 <action selector="getPhotoFromAlbum:" destination="Qpa-wW-O8B" id="vIO-IS-Yhk"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="删除" id="vxY-dy-KQJ">
+                            <connections>
+                                <action selector="tapDelete:" destination="Qpa-wW-O8B" id="e4i-Qa-1Ak"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="4N3-mz-0LA" id="JSQ-A2-bde"/>
+                        <outlet property="rightItem" destination="vxY-dy-KQJ" id="J6w-PT-mMt"/>
+                        <outlet property="toolBar" destination="Ghx-LD-c7N" id="GP6-Ok-auM"/>
                         <segue destination="C4c-oq-xbw" kind="show" identifier="show_detail" id="gRQ-Qy-xND"/>
                     </connections>
                 </viewController>
@@ -314,4 +343,7 @@
             <point key="canvasLocation" x="2460" y="120.98950524737631"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkmark.png" width="162" height="130"/>
+    </resources>
 </document>

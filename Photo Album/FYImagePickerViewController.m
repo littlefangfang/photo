@@ -104,7 +104,6 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PickerCell *cell = (PickerCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"picker_cell" forIndexPath:indexPath];
     [cell setImageViewWith:[[fullArr objectAtIndex:indexPath.row] objectForKey:@"image"]];
-    [cell selectedImage:cell.isSelected];
     return cell;
 }
 

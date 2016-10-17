@@ -12,4 +12,10 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *imgView;
 
+@property (strong, nonatomic) IBOutlet UIImageView *markImgView;
+
+@property (assign, nonatomic) BOOL isDeleteMode;
+
+@property (assign, nonatomic) BOOL isSelected;
+
 @end

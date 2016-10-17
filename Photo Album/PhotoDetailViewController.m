@@ -70,7 +70,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BigPhotoCell *cell = (BigPhotoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"big_cell" forIndexPath:indexPath];
-    cell.imgView.image = [_photoArr objectAtIndex:indexPath.row];
+    cell.imgView.image = [[_photoArr objectAtIndex:indexPath.row] objectForKey:@"image"];
     [cell setZoomScale];
     return cell;
 }

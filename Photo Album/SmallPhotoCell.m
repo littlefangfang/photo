@@ -10,4 +10,14 @@
 
 @implementation SmallPhotoCell
 
+- (void)setSelected:(BOOL)selected {
+    if(_isDeleteMode) {
+        _isSelected = selected;
+        _markImgView.hidden = !selected;
+    }else{
+        _isSelected = selected;
+        _markImgView.hidden = YES;
+    }
+}
+
 @end
