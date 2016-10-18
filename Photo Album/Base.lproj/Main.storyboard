@@ -34,7 +34,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="xxi-CA-cdl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NGQ-G4-4yh"/>
-                            <constraint firstItem="xxi-CA-cdl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hoS-vP-cFW"/>
+                            <constraint firstItem="xxi-CA-cdl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-200" id="hoS-vP-cFW">
+                                <variation key="heightClass=compact-widthClass=compact" constant="-100"/>
+                            </constraint>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BSX-iY-N9U"/>
@@ -312,7 +314,7 @@
                             <constraint firstItem="gmy-tD-cUC" firstAttribute="top" secondItem="Lnf-8T-hW3" secondAttribute="bottom" constant="54" id="Eth-w8-BbO"/>
                             <constraint firstItem="n5a-TK-s8a" firstAttribute="leading" secondItem="Lbw-uT-yUw" secondAttribute="leading" constant="16" id="GNV-zC-euR"/>
                             <constraint firstItem="YOj-Ug-MtE" firstAttribute="leading" secondItem="7qs-aS-hcc" secondAttribute="trailing" constant="36" id="Izt-4a-RsV"/>
-                            <constraint firstItem="Hb9-eA-dpD" firstAttribute="top" secondItem="DMH-5E-R5W" secondAttribute="bottom" constant="100" id="OVO-jQ-CFd"/>
+                            <constraint firstItem="Hb9-eA-dpD" firstAttribute="top" secondItem="DMH-5E-R5W" secondAttribute="bottom" constant="80" id="OVO-jQ-CFd"/>
                             <constraint firstItem="7qs-aS-hcc" firstAttribute="leading" secondItem="Lbw-uT-yUw" secondAttribute="leading" constant="16" id="ama-Sa-b7k"/>
                             <constraint firstItem="YOj-Ug-MtE" firstAttribute="centerY" secondItem="7qs-aS-hcc" secondAttribute="centerY" id="azs-n3-Xui"/>
                             <constraint firstItem="RsI-sq-mxn" firstAttribute="leading" secondItem="EBH-6i-jeR" secondAttribute="trailing" constant="8" id="cCj-cT-Jie"/>
