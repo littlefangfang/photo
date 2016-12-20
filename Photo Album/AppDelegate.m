@@ -22,6 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     firstEnter = true;
+    [self addCoverView];
     return YES;
 }
 
@@ -29,6 +30,8 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    [self addCoverView];
+
 }
 
 
@@ -45,38 +48,38 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    if (firstEnter) {
-        firstEnter = false;
-    }else{
-        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"alwaysNeedPassword"] boolValue]) {
-            return;
-        }
-        
-        if ([[self topViewController] isKindOfClass:[ViewController class]]) {
-            return;
-        }
-        
-        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-        
-        [keyWindow setWindowLevel:UIWindowLevelNormal];
-        if (!v) {
-            v = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-            v.backgroundColor = [UIColor grayColor];
-            [keyWindow addSubview:v];
-            
-            UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-            tf.backgroundColor = [UIColor whiteColor];
-            [tf setKeyboardType:UIKeyboardTypeNumberPad];
-            [tf becomeFirstResponder];
-            [tf addTarget:self action:@selector(textFChanged:) forControlEvents:UIControlEventEditingChanged];
-            [tf setSecureTextEntry:YES];
-            [v addSubview:tf];
-            tf.center = v.center;
-        }else{
-            v.hidden = NO;
-            [(UITextField *)v.subviews[0] becomeFirstResponder];
-        }
-    }
+//    if (firstEnter) {
+//        firstEnter = false;
+//    }else{
+//        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"alwaysNeedPassword"] boolValue]) {
+//            return;
+//        }
+//        
+//        if ([[self topViewController] isKindOfClass:[ViewController class]]) {
+//            return;
+//        }
+//        
+//        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+//        
+//        [keyWindow setWindowLevel:UIWindowLevelNormal];
+//        if (!v) {
+//            v = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//            v.backgroundColor = [UIColor grayColor];
+//            [keyWindow addSubview:v];
+//            
+//            UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+//            tf.backgroundColor = [UIColor whiteColor];
+//            [tf setKeyboardType:UIKeyboardTypeNumberPad];
+//            [tf becomeFirstResponder];
+//            [tf addTarget:self action:@selector(textFChanged:) forControlEvents:UIControlEventEditingChanged];
+//            [tf setSecureTextEntry:YES];
+//            [v addSubview:tf];
+//            tf.center = v.center;
+//        }else{
+//            v.hidden = NO;
+//            [(UITextField *)v.subviews[0] becomeFirstResponder];
+//        }
+//    }
 
 }
 
@@ -115,6 +118,39 @@
 
 - (void)application:(UIApplication *)application didChangeStatusBarFrame:(CGRect)oldStatusBarFrame {
     [v setFrame:[UIScreen mainScreen].bounds];
+}
+
+
+- (void)addCoverView {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"alwaysNeedPassword"] boolValue] || ![[NSUserDefaults standardUserDefaults] objectForKey:@"passwords"]) {
+        return;
+    }
+    
+    if ([[self topViewController] isKindOfClass:[ViewController class]]) {
+        return;
+    }
+    
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    
+    [keyWindow setWindowLevel:UIWindowLevelNormal];
+    if (!v) {
+        v = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        v.backgroundColor = [UIColor grayColor];
+        [keyWindow addSubview:v];
+        
+        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+        tf.backgroundColor = [UIColor whiteColor];
+        [tf setKeyboardType:UIKeyboardTypeNumberPad];
+        [tf becomeFirstResponder];
+        [tf addTarget:self action:@selector(textFChanged:) forControlEvents:UIControlEventEditingChanged];
+        [tf setSecureTextEntry:YES];
+        [v addSubview:tf];
+        tf.center = v.center;
+    }else{
+        v.hidden = NO;
+        [(UITextField *)v.subviews[0] becomeFirstResponder];
+    }
+
 }
 
 

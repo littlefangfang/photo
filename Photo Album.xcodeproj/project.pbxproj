@@ -248,7 +248,7 @@
 				TargetAttributes = {
 					7015371E1DAB433200AE7A30 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = H2YLKVCAJJ;
+						DevelopmentTeam = 8U3VM32L8Q;
 						ProvisioningStyle = Automatic;
 					};
 					701537371DAB433200AE7A30 = {
@@ -475,10 +475,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H2YLKVCAJJ;
+				DEVELOPMENT_TEAM = 8U3VM32L8Q;
 				INFOPLIST_FILE = "Photo Album/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fy.Photo-Album";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fy.works;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -487,10 +487,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H2YLKVCAJJ;
+				DEVELOPMENT_TEAM = 8U3VM32L8Q;
 				INFOPLIST_FILE = "Photo Album/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fy.Photo-Album";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fy.works;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

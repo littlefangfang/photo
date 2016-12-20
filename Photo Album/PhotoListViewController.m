@@ -69,6 +69,10 @@
     
     PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:nil];
     [allPhotosResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        
+        options.networkAccessAllowed = NO;
+        options.synchronous = YES;
         
         PHImageManager *imgMgr = [PHImageManager defaultManager];
         [imgMgr requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
