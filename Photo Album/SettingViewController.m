@@ -45,7 +45,7 @@
     NSString *originPW = [[NSUserDefaults standardUserDefaults] objectForKey:@"passwords"];
     
     if (originPW != nil && ![originPW isEqualToString:_originTF.text]) {
-        UIAlertController *altC = [UIAlertController alertControllerWithTitle:@"原密码错误" message:@"大笨猪把密码输错了" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *altC = [UIAlertController alertControllerWithTitle:@"原密码错误" message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"好吧" style:UIAlertActionStyleCancel handler:nil];
         [altC addAction:action];
         [self presentViewController:altC animated:YES completion:nil];
@@ -53,15 +53,15 @@
     }
     
     if(![_theNewTF.text isEqualToString:_repeatTF.text]) {
-        UIAlertController *altC = [UIAlertController alertControllerWithTitle:@"两次新密码不一致" message:@"大笨猪两次新密码不一致" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *altC = [UIAlertController alertControllerWithTitle:@"两次新密码不一致" message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"好吧" style:UIAlertActionStyleCancel handler:nil];
         [altC addAction:action];
         [self presentViewController:altC animated:YES completion:nil];
         return;
     }else{
         [[NSUserDefaults standardUserDefaults] setObject:_theNewTF.text forKey:@"passwords"];
-        UIAlertController *altC = [UIAlertController alertControllerWithTitle:@"修改成功" message:@"你真厉害" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"那当然了!" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertController *altC = [UIAlertController alertControllerWithTitle:@"修改成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
         [altC addAction:action];
         [self presentViewController:altC animated:YES completion:nil];
         return;
