@@ -20,6 +20,7 @@
 @implementation FYImagePickerViewController{
     NSMutableArray *fullArr;
     NSMutableArray *selectedArr;
+    NSMutableSet *photoSet;
 }
 
 - (void)viewDidLoad {
@@ -28,6 +29,7 @@
     // Do any additional setup after loading the view.
     fullArr = [NSMutableArray array];
     selectedArr = [NSMutableArray array];
+    photoSet = [NSMutableSet set];
     
     for (int i = 0; i < _albumArr.count; i++) {
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -104,6 +106,8 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PickerCell *cell = (PickerCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"picker_cell" forIndexPath:indexPath];
     [cell setImageViewWith:[[fullArr objectAtIndex:indexPath.row] objectForKey:@"image"]];
+
+    [cell selectedImage:[photoSet containsObject:indexPath]];
     return cell;
 }
 
@@ -117,16 +121,27 @@
     PickerCell *cell = (PickerCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell selectedImage:YES];
     [selectedArr addObject:[fullArr objectAtIndex:indexPath.row]];
+    [photoSet addObject:indexPath];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     PickerCell *cell = (PickerCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell selectedImage:NO];
+    [photoSet removeObject:indexPath];
+
+    id willRemovedItem;
     for (NSMutableDictionary *item in selectedArr) {
         if ([(NSNumber *)[[fullArr objectAtIndex:indexPath.row] objectForKey:@"index"] intValue] == [(NSNumber *)[item objectForKey:@"index"] intValue]) {
-            [selectedArr removeObject:item];
+//            [selectedArr removeObject:item];
+            willRemovedItem = item;
         }
     }
+    [selectedArr removeObject:willRemovedItem];
+}
+
+- (void)dealloc
+{
+    NSLog(@"picker view dealloc");
 }
 
 /*

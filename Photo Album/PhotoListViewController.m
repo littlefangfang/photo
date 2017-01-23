@@ -28,7 +28,8 @@
 @implementation PhotoListViewController{
     NSString *dirPath;
     BOOL canDelete;
-//    NSMutableArray *willDeletePhotoArr;
+    NSMutableArray *willDeletePhotoArr;
+    NSMutableSet *photoSet;
 }
 
 - (void)viewDidLoad {
@@ -38,17 +39,20 @@
     _toolBar.hidden = YES;
     canDelete = NO;
     
+    photoSet = [NSMutableSet set];
     _albumArr = [NSMutableArray array];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.allowsMultipleSelection = YES;
     
+//    [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:nil];
     [self getLocalPhoto];
 }
 
 - (void)getLocalPhoto {
     dirPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"photos"];
     _photoArr = [NSMutableArray array];
+    willDeletePhotoArr = [NSMutableArray array];
     
     NSFileManager *fmr = [NSFileManager defaultManager];
     BOOL isDir = YES;
@@ -63,6 +67,7 @@
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         [dic setObject:photoPath forKey:@"path"];
         [dic setObject:img forKey:@"image"];
+        [dic setObject:[NSNumber numberWithInt:i] forKey:@"index"];
         [dic setObject:[NSNumber numberWithBool:NO] forKey:@"willremove"];
         [_photoArr addObject:dic];
     }
@@ -75,14 +80,14 @@
         options.synchronous = YES;
         
         PHImageManager *imgMgr = [PHImageManager defaultManager];
-        [imgMgr requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            [_albumArr addObject:result];
+        [imgMgr requestImageDataForAsset:asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            [_albumArr addObject:[UIImage imageWithData:imageData]];
         }];
     }];
-
 }
 
 - (IBAction)getPhotoFromAlbum:(id)sender {
+    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         FYImagePickerViewController *ipc = [[FYImagePickerViewController alloc] init];
         ipc.pickerDelegate = self;
@@ -152,6 +157,9 @@
     SmallPhotoCell *cell = (SmallPhotoCell *)[_collectionView dequeueReusableCellWithReuseIdentifier:@"small_photo_cell" forIndexPath:indexPath];
     cell.imgView.image = [[_photoArr objectAtIndex:indexPath.row] objectForKey:@"image"];
     [cell setSelected:[[[_photoArr objectAtIndex:indexPath.row] objectForKey:@"willremove"] boolValue]];
+    if (canDelete) {
+        [cell setSelected:[photoSet containsObject:indexPath]];
+    }
     return cell;
 }
 
@@ -163,6 +171,7 @@
         [cell setSelected:YES];
         
         [[_photoArr objectAtIndex:indexPath.row] setObject:[NSNumber numberWithBool:YES] forKey:@"willremove"];
+        [photoSet addObject:indexPath];
         
     }else{
         SmallPhotoCell *cell = (SmallPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -175,8 +184,18 @@
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     SmallPhotoCell *cell = (SmallPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell setSelected:NO];
+    [photoSet removeObject:indexPath];
     
     [[_photoArr objectAtIndex:indexPath.row] setObject:[NSNumber numberWithBool:NO] forKey:@"willremove"];
+    
+    id willDiselectedItem;
+    for (NSMutableDictionary *item in willDeletePhotoArr) {
+        if ([(NSNumber *)[[_photoArr objectAtIndex:indexPath.row] objectForKey:@"index"] intValue] == [(NSNumber *)[item objectForKey:@"index"] intValue]) {
+
+            willDiselectedItem = item;
+        }
+    }
+    [willDeletePhotoArr removeObject:willDiselectedItem];
 }
 
 #pragma mark - FYPickerDelegate
